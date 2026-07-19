@@ -46,6 +46,16 @@ Example Inc,https://example.com,buyer@example.com
 
 `contact_email` is optional during import but required before email dispatch.
 
+## Scraper CLI
+
+You can run the scraper module directly to validate homepage extraction:
+
+```bash
+python -m sales_engine.scraper https://example.com
+```
+
+The command prints JSON containing `title`, `meta_description`, `visible_text`, and inferred `industry`. The scraper uses Requests, BeautifulSoup, and Trafilatura when installed, and keeps a standard-library fallback for reliable local validation.
+
 ## Workflow
 
 1. Add companies on **Company Upload**.
