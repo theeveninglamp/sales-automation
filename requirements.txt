@@ -1,0 +1,12 @@
+streamlit==1.36.0
+SQLAlchemy==2.0.31
+pydantic==2.8.2
+pydantic-settings==2.3.4
+python-dotenv==1.0.1
+loguru==0.7.2
+requests==2.32.3
+beautifulsoup4==4.12.3
+trafilatura==1.12.2
+google-generativeai==0.7.2
+plotly==5.22.0
+pandas==2.2.2
