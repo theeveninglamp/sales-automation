@@ -20,11 +20,14 @@ def log_activity(session: Session, event: str, detail: str | None = None, lead_i
 
 
 def create_lead(session: Session, company_name: str, website_url: str, contact_email: str | None = None) -> tuple[Lead, bool]:
+    name = company_name.strip()
+    if not name:
+        raise ValueError("Company name is required")
     url = normalize_url(website_url)
     existing = session.scalar(select(Lead).where(func.lower(Lead.website_url) == url.lower()))
     if existing:
         return existing, False
-    lead = Lead(company_name=company_name.strip(), website_url=url, contact_email=(contact_email or None))
+    lead = Lead(company_name=name, website_url=url, contact_email=(contact_email or None))
     session.add(lead)
     try:
         session.flush()
@@ -69,10 +72,14 @@ def enrich_lead(session: Session, lead: Lead) -> Lead:
     result = GeminiService().generate(lead)
     lead.company_summary = result.company_summary
     lead.pain_points = "\n".join(result.pain_points)
+    lead.status = LeadStatus.ENRICHED
+    log_activity(session, "Lead enriched", "Company summary and pain points generated", lead.id)
     lead.generated_email = result.personalized_email
+    lead.status = LeadStatus.EMAIL_GENERATED
+    log_activity(session, "Email generated", "Personalized sales email generated", lead.id)
     lead.status = LeadStatus.WAITING_APPROVAL
     lead.failure_reason = None
-    log_activity(session, "Email generated", "Lead is waiting for human approval", lead.id)
+    log_activity(session, "Approval requested", "Lead is waiting for human approval", lead.id)
     return lead
 
 

@@ -35,9 +35,12 @@ def page_upload() -> None:
             email = st.text_input("Contact email (required before dispatch)")
             submitted = st.form_submit_button("Add Lead")
         if submitted:
-            with get_session() as session:
-                lead, created = create_lead(session, company, website, email or None)
-                st.success(f"{'Created' if created else 'Already exists'} lead #{lead.id}: {lead.company_name}")
+            try:
+                with get_session() as session:
+                    lead, created = create_lead(session, company, website, email or None)
+                    st.success(f"{'Created' if created else 'Already exists'} lead #{lead.id}: {lead.company_name}")
+            except ValueError as exc:
+                st.error(str(exc))
     with right:
         st.subheader("CSV Upload")
         st.caption("Required columns: company_name, website_url. Optional: contact_email.")
