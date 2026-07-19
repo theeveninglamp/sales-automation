@@ -56,6 +56,16 @@ python -m sales_engine.scraper https://example.com
 
 The command prints JSON containing `title`, `meta_description`, `visible_text`, and inferred `industry`. The scraper uses Requests, BeautifulSoup, and Trafilatura when installed, and keeps a standard-library fallback for reliable local validation.
 
+## Gemini Personalization CLI
+
+Validate Gemini integration and fallback generation locally with:
+
+```bash
+python -m sales_engine.gemini_service --company "Acme Automation" --industry SaaS
+```
+
+If `GEMINI_API_KEY` is present, the service calls Google Gemini and validates the JSON response. Without credentials or the Google SDK, it produces deterministic personalization that still follows the email rules for local development and review.
+
 ## Workflow
 
 1. Add companies on **Company Upload**.
