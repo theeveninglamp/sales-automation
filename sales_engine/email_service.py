@@ -5,8 +5,8 @@ from email.message import EmailMessage
 
 from loguru import logger
 
-from sales_engine.models import Lead, LeadStatus
-from sales_engine.utils import get_settings
+from models import Lead, LeadStatus
+from utils import get_settings
 
 
 class EmailService:

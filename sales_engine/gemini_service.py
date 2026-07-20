@@ -9,7 +9,7 @@ import re
 from dataclasses import asdict, dataclass
 from typing import Any, Protocol
 
-DEFAULT_GEMINI_MODEL = "gemini-1.5-flash"
+DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
 DEFAULT_SENDER_NAME = "Sales Team"
 DEFAULT_VALUE_PROPOSITION = (
     "We help revenue teams identify qualified opportunities and automate personalized outreach without losing human oversight."

@@ -8,11 +8,11 @@ from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
-from sales_engine.email_service import EmailService
-from sales_engine.gemini_service import GeminiService
-from sales_engine.models import ActivityLog, Lead, LeadStatus
-from sales_engine.scraper import WebsiteScraper
-from sales_engine.utils import normalize_url
+from email_service import EmailService
+from gemini_service import GeminiService
+from models import ActivityLog, Lead, LeadStatus
+from scraper import WebsiteScraper
+from utils import normalize_url
 
 
 def log_activity(session: Session, event: str, detail: str | None = None, lead_id: int | None = None) -> None:

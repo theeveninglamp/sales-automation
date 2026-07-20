@@ -6,7 +6,7 @@ from enum import Enum
 from sqlalchemy import DateTime, Enum as SAEnum, Integer, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 
-from sales_engine.database import Base
+from database import Base
 
 
 class LeadStatus(str, Enum):

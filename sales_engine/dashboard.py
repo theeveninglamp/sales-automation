@@ -6,8 +6,8 @@ import streamlit as st
 from sqlalchemy import desc, func, select
 from sqlalchemy.orm import Session
 
-from sales_engine.models import ActivityLog, Lead, LeadStatus
-from sales_engine.utils import get_settings
+from models import ActivityLog, Lead, LeadStatus
+from utils import get_settings
 
 
 def render_metric_cards(session: Session) -> None:

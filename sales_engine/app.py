@@ -4,10 +4,10 @@ import pandas as pd
 import streamlit as st
 from sqlalchemy import desc, select
 
-from sales_engine.dashboard import render_file_logs, render_leads_table, render_metric_cards, render_recent_activity, render_status_chart
-from sales_engine.database import get_session, init_db
-from sales_engine.models import Lead, LeadStatus
-from sales_engine.workflow import approve_lead, bulk_create_leads, create_lead, enrich_lead, reject_lead, scrape_lead, send_approved_email
+from dashboard import render_file_logs, render_leads_table, render_metric_cards, render_recent_activity, render_status_chart
+from database import get_session, init_db
+from models import Lead, LeadStatus
+from workflow import approve_lead, bulk_create_leads, create_lead, enrich_lead, reject_lead, scrape_lead, send_approved_email
 
 st.set_page_config(page_title="AI Sales Automation Engine", page_icon="🤖", layout="wide")
 

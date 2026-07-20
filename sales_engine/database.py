@@ -7,7 +7,7 @@ from typing import Iterator
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
-from sales_engine.utils import get_settings
+from utils import get_settings
 
 
 class Base(DeclarativeBase):
@@ -26,7 +26,7 @@ SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False, expi
 
 
 def init_db() -> None:
-    from sales_engine import models  # noqa: F401
+    import models  # noqa: F401
 
     Base.metadata.create_all(bind=engine)
 
